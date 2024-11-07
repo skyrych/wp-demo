@@ -1,0 +1,11 @@
+name: Print a message
+on: push
+
+jobs:
+    print_a_message:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
+            - name: Print a message
+              run: echo "$(cat hello_world.txt)"
