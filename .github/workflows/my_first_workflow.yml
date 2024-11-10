@@ -1,0 +1,11 @@
+name: My First Workflow
+on: push
+
+jobs:
+    read:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout repostory
+              uses: actions/checkout@v4
+            - name: Read hello_worls.txt
+              run: echo "$(cat hello_world.txt)"
