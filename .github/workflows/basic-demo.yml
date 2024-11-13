@@ -1,0 +1,11 @@
+name: Basic Hello World Demo
+on: push
+
+jobs:
+    greeeting:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
+            - name: Hello World
+              run: echo "$(cat hello_world.txt)"
