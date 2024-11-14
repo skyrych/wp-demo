@@ -15,6 +15,7 @@ jobs:
       - name: Get the output time
         run: echo "The time was ${{ steps.hello.outputs.time }}"
   build:
+    needs: hello_world_job
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
