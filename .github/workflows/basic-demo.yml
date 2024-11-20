@@ -14,11 +14,8 @@ jobs:
       # Use the output from the `hello` step
       - name: Get the output time
         run: echo "The time was ${{ steps.hello.outputs.time }}"
-      - name: Set the value
-        id: step_one
-        run: |
-          echo "action_state=yellow" >> "$GITHUB_ENV"
-      - name: Use the value
-        id: step_two
-        run: |
-          printf '%s\n' "$action_state" # This will output 'yellow'
+      - name: Set Variable
+        run: echo "MY_VAR=1" >> $GITHUB_ENV
+      - name: Conditional Step
+        run: echo "This step runs conditionally."
+        if: ${{ env.MY_VAR == 1 }}
