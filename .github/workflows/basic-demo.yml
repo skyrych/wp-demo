@@ -1,16 +1,21 @@
-name: Hello World
-on: [push]
+name: Hello World!
+on:
+  workflow_dispatch:
+    inputs:
+      build_id:
+        required: true
+        type: string
+      deploy_target:
+        required: true
+        type: string
+      perform_deploy:
+        required: true
+        type: boolean
 
 jobs:
-  hello_world_job:
-    runs-on: self-hosted
-    name: A job to say hello
+  deploy:
+    runs-on: ubuntu-latest
+    if: ${{ inputs.perform_deploy }}
     steps:
-      - name: Hello world action step
-        id: hello
-        uses: actions/hello-world-docker-action@v2
-        with:
-          who-to-greet: 'Mona the Octocat'
-      # Use the output from the `hello` step
-      - name: Get the output time
-        run: echo "The time was ${{ steps.hello.outputs.time }}"
+      - name: Deploy build to target
+        run: echo "Deploying build:${{ inputs.build_id }} to target:${{ inputs.deploy_target }}"
